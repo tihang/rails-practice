@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Todo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <%= link_to  "Task App", root_path, class: "navbar-brand" %>
+      <button id="hamburger" class="navbar-toggler hamburger hamburger--stand" style="outline: none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <%= nav_link "Home", root_path %>
+          <%= nav_link "Task", tasks_path %>
+        </ul>
+      </div>
+    </nav>
+    <div id="content" style="margin-top: 100px">
+      <%= yield %>
+    </div>
+    <script>
+      //Hamburger Nav Scripts
+       // Nav Overlay toggle
+      function toggleMenu() {
+        // Active class toggle
+        document.getElementById("hamburger").classList.toggle("is-active");
+      }
+      // Toggle menu open close
+      document.getElementById("hamburger").addEventListener("click", toggleMenu);
+    </script>
   </body>
 </html>
