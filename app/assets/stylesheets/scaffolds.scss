@@ -46,15 +46,21 @@ div.actions {
   margin-bottom: 10px;
 }
 
-#notice {
+#flash_notice {
   color: green;
 }
-
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+#flash_alert {
+  color: tomato;
 }
+#flash_error {
+  color: tomato;
+}
+
+// .field_with_errors {
+//   padding: 2px;
+//   background-color: red;
+//   display: table;
+// }
 
 #error_explanation {
   width: 450px;

@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
+<%= "Logged in as #{current_user.email}" %>
+
 <h1>Tasks</h1>
 <%= render @tasks %>
+
 <br>
 <%= link_to  "Home", root_url %> |
 <%= link_to 'New Task', new_task_path %>

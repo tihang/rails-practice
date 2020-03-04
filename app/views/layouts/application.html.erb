@@ -9,25 +9,46 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.3/dist/css/uikit.min.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <%= link_to  "Task App", root_path, class: "navbar-brand" %>
+
       <button id="hamburger" class="navbar-toggler hamburger hamburger--stand" style="outline: none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
         </span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <%= nav_link "Home", root_path %>
-          <%= nav_link "Task", tasks_path %>
+          <% if user_signed_in? then %>
+              <%= nav_link "Home", root_path, :get %>
+              <%= nav_link "Task", tasks_path, :get %>
+              <%= nav_link "Logout", destroy_user_session_path, :delete %>
+            <% else %>
+              <%= nav_link "Home", root_path, :get %>
+              <%= nav_link "Sign Up", new_user_registration_path, :get  %>
+              <%= nav_link "Login", new_user_session_path, :get %>
+          <% end %>
         </ul>
       </div>
+
     </nav>
-    <div id="content" style="margin-top: 100px">
+
+    <div id="content" style="margin-top: 100px" class="uk-container">
+      <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+      <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+      <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+      
       <%= yield %>
     </div>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.3/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.3/dist/js/uikit-icons.min.js"></script>
     <script>
       //Hamburger Nav Scripts
        // Nav Overlay toggle
