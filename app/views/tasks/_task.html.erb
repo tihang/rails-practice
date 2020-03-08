@@ -1,5 +1,9 @@
 <div class="task">
   <p>
+    <strong>Task ID:</strong>
+    <%= task.id %>
+  </p>
+  <p>
     <strong>Title:</strong>
     <%= link_to_unless_current task.title, task %>
   </p>
@@ -10,6 +14,10 @@
   <p>
     <strong>Priority:</strong>
     <%= task.priority %>
+  </p>
+  <p>
+    <strong>USER Email:</strong>
+    <%= task.user.email %>
   </p>
 </div>
 <br>
